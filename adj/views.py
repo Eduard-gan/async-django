@@ -2,6 +2,8 @@ from time import sleep
 
 from django.http import HttpResponse
 from adj import shared
+from adj import settings
+from aio_pika import Message
 
 
 async def async_index(request):
@@ -18,3 +20,10 @@ def index(request):
     sleep(5)
     print("OK")
     return HttpResponse("Hello, sync Django!")
+
+
+async def publisher(request):
+    print("PUB")
+    await settings.RABBIT_CHANNEL.default_exchange.publish(Message("HELLO FROM DJ!".encode()), routing_key=settings.RABBIT_QUEUE)
+    print("PUB OK")
+    return  HttpResponse("OK")

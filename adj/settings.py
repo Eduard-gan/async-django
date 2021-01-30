@@ -123,3 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+RABBIT_USER = "mfo"
+RABBIT_PASSWORD = "01014949"
+RABBIT_IP = "127.0.0.1"
+RABBIT_QUEUE = "adj_test"
+RABBIT_CHANNEL = None
